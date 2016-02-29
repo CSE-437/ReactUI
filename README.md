@@ -1,3 +1,5 @@
+![shot](shot.png)
+
 see public/scripts/home.js for react code
 
 test json are in comments.json and comments.json
