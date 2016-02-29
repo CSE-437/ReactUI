@@ -10,7 +10,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-var Comment = React.createClass({
+var Deck = React.createClass({
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
     return { __html: rawMarkup };
@@ -28,7 +28,7 @@ var Comment = React.createClass({
   }
 });
 
-var CommentBox = React.createClass({
+var DeckBox = React.createClass({
   loadCommentsFromServer: function() {
     $.ajax({
       url: this.props.url,
@@ -75,20 +75,20 @@ var CommentBox = React.createClass({
     return (
       <div className="commentBox">
         <h1>Comments</h1>
-        <CommentList data={this.state.data} />
-        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+        <DeckList data={this.state.data} />
+        <DeckFormonCommentSubmit={this.handleCommentSubmit} />
       </div>
     );
   }
 });
 
-var CommentList = React.createClass({
+var DeckList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <Comment author={comment.author} key={comment.id}>
+        <Deck author={comment.author} key={comment.id}>
           {comment.text}
-        </Comment>
+        </Deck>
       );
     });
     return (
@@ -99,7 +99,7 @@ var CommentList = React.createClass({
   }
 });
 
-var CommentForm = React.createClass({
+var DeckForm = React.createClass({
   getInitialState: function() {
     return {author: '', text: ''};
   },
@@ -141,6 +141,6 @@ var CommentForm = React.createClass({
 });
 
 ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={2000} />,
+  <DeckBox url="/api/comments" pollInterval={2000} />,
   document.getElementById('content')
 );

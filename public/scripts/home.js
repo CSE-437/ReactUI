@@ -1,25 +1,32 @@
 
 
 // tutorial10.js
-var CommentList = React.createClass({
+var DeckList = React.createClass({
     render: function() {
-        var commentNodes = this.props.data.map(function(comment) {
+        var deckNodes = this.props.data.map(function(deck) {
             return (
-                <Comment owner={comment.owner} key={comment.id}>
-                {comment.deck}
-                </Comment>
+                <Deck
+                key = {deck.name}
+                name = {deck.name}
+                desc = {deck.desc}
+                owner={deck.owner}
+                cids = {deck.cids}
+                children = {deck.children}
+                subscribers = {deck.subscribers}
+                >
+                </Deck>
             );
         });
         return (
             <div className="commentList">
-            {commentNodes}
+            {deckNodes}
             </div>
         );
     }
 });
 
 // tutorial16.js
-var CommentForm = React.createClass({
+var DeckForm = React.createClass({
     getInitialState: function() {
         return {owner: '', text: ''};
     },
@@ -61,16 +68,28 @@ var CommentForm = React.createClass({
 });
 
 // tutorial7.js
-var Comment = React.createClass({
+var Deck = React.createClass({
     render: function() {
         return (
             <div className="deck">
-                <div className="title">
-                <b>  {this.props.children} </b>
+                <div className="name">
+                {this.props.name}
+                </div>
+
+                <div className="description">
+                {this.props.desc}
                 </div>
 
                 <div className="owner">
-                {this.props.owner}
+                Owner: {this.props.owner}
+                </div>
+
+                <div className="cids">
+                {this.props.cids.length} cards
+                </div>
+
+                <div className="children">
+                {this.props.children.length} subdecks
                 </div>
             </div>
         );
@@ -93,7 +112,7 @@ var Nav = React.createClass({
 });
 
 // tutorial14.js
-var CommentBox = React.createClass({
+var DeckBox = React.createClass({
     loadCommentsFromServer: function() {
         $.ajax({
             url: this.state.url,
@@ -158,7 +177,7 @@ var CommentBox = React.createClass({
                     <Nav text="shared with me" url="/api/comments2" update={this.handleUpdate} />
                 </div>
 
-                <CommentList data={this.state.data} />
+                <DeckList data={this.state.data} />
 
             </div>
         );
@@ -166,8 +185,8 @@ var CommentBox = React.createClass({
 });
 
 ReactDOM.render(
-    <CommentBox pollInterval={2000} />,
+    <DeckBox pollInterval={2000} />,
     document.getElementById('content')
 );
 
-// <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+// <DeckForm onCommentSubmit={this.handleCommentSubmit} />

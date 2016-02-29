@@ -1,12 +1,18 @@
 [
     {
-        "id": 1456517366382,
-        "owner": "knitter",
-        "deck": "knitting 101"
+        "desc": "Our first deck",
+        "name": "Deck One",
+        "cids": ["313:cid","132:2","131:3"],
+        "owner": "Lyn",
+        "children": ["oid:did", "131:2"],
+        "subscribers": ["Jkwon", "Mindy"]
     },
     {
-        "id": 123,
-        "owner": "crocheter",
-        "deck": "crochet 101"
+        "desc": "Our second deck",
+        "name": "Deck Two",
+        "cids": ["313:cid","132:2","131:3"],
+        "owner": "Jkwon",
+        "children": ["oid:did", "131:2"],
+        "subscribers": ["Lyn", "Mindy"]
     }
 ]
