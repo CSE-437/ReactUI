@@ -5,12 +5,24 @@ var DeckList = React.createClass({
     render: function() {
         var deckNodes = this.props.data.map(function(deck) {
             return (
+                // <Deck
+                // key = {deck.name}
+                // name = {deck.name}
+                // desc = {deck.desc}
+                // owner={deck.owner}
+                // cids = {deck.cids}
+                // children = {deck.children}
+                // subscribers = {deck.subscribers}
+                // >
                 <Deck
-                key = {deck.name}
+                did = {deck.did}
                 name = {deck.name}
+                keywords = {deck.keywords}
                 desc = {deck.desc}
-                owner={deck.owner}
-                cids = {deck.cids}
+                //cids = {deck.cids}
+                newCards = {deck.newCards}
+                owner ={deck.owner}
+                ispublic = {deck.ispublic}
                 children = {deck.children}
                 subscribers = {deck.subscribers}
                 >
@@ -72,25 +84,42 @@ var Deck = React.createClass({
     render: function() {
         return (
             <div className="deck">
+                // <div className="name">
+                // {this.props.name}
+                // </div>
+                //
+                // <div className="description">
+                // {this.props.desc}
+                // </div>
+                //
+                // <div className="owner">
+                // Owner: {this.props.owner}
+                // </div>
+                //
+                // <div className="cids">
+                // {this.props.cids.length} cards
+                // </div>
+                //
+                // <div className="children">
+                // {this.props.children.length} subdecks
+                // </div>
                 <div className="name">
-                {this.props.name}
+                Name: {this.props.name}
                 </div>
 
                 <div className="description">
                 {this.props.desc}
                 </div>
 
+                <div className="children">
+                {this.props.children.length} subdecks
+                </div>
+
                 <div className="owner">
                 Owner: {this.props.owner}
                 </div>
 
-                <div className="cids">
-                {this.props.cids.length} cards
-                </div>
 
-                <div className="children">
-                {this.props.children.length} subdecks
-                </div>
             </div>
         );
     }
@@ -162,7 +191,7 @@ var DeckBox = React.createClass({
         });
     },
     getInitialState: function() {
-        return {data: [], url: "/api/comments"};
+        return {data: [], url: "http://ankihub.herokuapp.com/api/decks/fluffluff:1455903505170"};
     },
     componentDidMount: function() {  // post render
         this.loadCommentsFromServer();
@@ -172,10 +201,7 @@ var DeckBox = React.createClass({
         return (
             <div className="commentBox">
 
-                <div className="navBox">
-                    <Nav text="mine" url="/api/comments" update={this.handleUpdate}/>
-                    <Nav text="shared with me" url="/api/comments2" update={this.handleUpdate} />
-                </div>
+                
 
                 <DeckList data={this.state.data} />
 

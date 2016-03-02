@@ -1,3 +1,8 @@
+<div className="navBox">
+    <Nav text="mine" url="/api/comments" update={this.handleUpdate}/>
+    <Nav text="shared with me" url="/api/comments2" update={this.handleUpdate} />
+</div>
+
 [
   {
       "desc": "Our first deck",
